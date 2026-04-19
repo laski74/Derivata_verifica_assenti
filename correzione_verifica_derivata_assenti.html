@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correzione verifica - La derivata</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root{--card:#ffffff;--ink:#1f2937;--muted:#6b7280;--line:#d9e2f1;--accent:#285ea8;--ok:#0f766e;--shadow:0 14px 40px rgba(31,41,55,.10);--radius:22px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eef3fb 0%,#f7f9fd 100%)}
+    .wrap{max-width:1200px;margin:0 auto;padding:28px 18px 60px}
+    .hero{background:linear-gradient(135deg,#1e3a8a 0%,#285ea8 50%,#4f8ae8 100%);color:#fff;border-radius:28px;padding:28px 28px 22px;box-shadow:var(--shadow)}
+    .hero h1{margin:0 0 10px;font-size:2rem}.hero p{margin:8px 0 0;color:rgba(255,255,255,.92);line-height:1.55}
+    .meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}.pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);padding:10px 14px;border-radius:999px;font-size:.95rem}
+    .tabs{display:flex;gap:10px;margin:22px 0 18px;flex-wrap:wrap}.tab-btn{border:none;background:#dbe7fb;color:#123564;padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer}.tab-btn.active{background:var(--accent);color:#fff}
+    .tab-panel{display:block}.section-title{margin:28px 0 14px;font-size:1.35rem;color:#10325f}
+    .exercise{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:16px 0}
+    .exercise-head{padding:20px 22px 14px;border-bottom:1px solid #ebf0fa;background:linear-gradient(180deg,#ffffff,#f9fbff)}
+    .exercise-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#eaf2ff;color:var(--accent);font-weight:800;margin-right:10px}
+    .exercise-title{font-size:1.1rem;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.statement{margin-top:12px;line-height:1.7;font-size:1rem}
+    .controls{padding:0 22px 20px}.toggle{background:var(--accent);color:#fff;border:none;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer}
+    .solution{max-height:0;overflow:hidden;transition:max-height .6s ease,padding .35s ease,opacity .35s ease;opacity:0;padding:0 22px;background:#fbfdff}.solution.open{max-height:2300px;opacity:1;padding:4px 22px 24px}
+    .solution h4{margin:16px 0 8px;color:#0f3b76}.solution p,.solution li{line-height:1.75}.solution ul{margin-top:8px}
+    .step{padding:14px 16px;background:#fff;border:1px solid #e6edf8;border-radius:16px;margin:10px 0}.note{border-left:4px solid var(--ok);padding:10px 14px;background:#f2fbf9;border-radius:12px;margin-top:12px}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.summary{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+    table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe4f0;padding:10px 12px;vertical-align:top;text-align:left}th{background:#eef5ff;color:#10325f}tr:nth-child(even) td{background:#fbfdff}
+    .footer{margin-top:28px;color:var(--muted);text-align:center;font-style:italic}.badge{display:inline-block;background:#e8f1ff;color:#1d4d8c;border-radius:999px;padding:5px 10px;font-size:.85rem;font-weight:700}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+    @media (max-width: 640px){.hero h1{font-size:1.55rem}.exercise-head,.controls,.solution{padding-left:16px;padding-right:16px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Correzione verifica: <em>La derivata</em></h1>
+      <p>Pagina HTML interattiva con svolgimenti a scomparsa, spiegazioni passo passo e riepilogo finale. Il testo degli esercizi rimane sempre visibile, mentre ogni soluzione può essere aperta con un clic.</p>
+      <div class="meta">
+        <div class="pill">Argomento: derivate</div>
+        <div class="pill">Formato: soluzione guidata</div>
+        <div class="pill">Scheda: Verifica 1</div>
+      </div>
+    </section>
+
+    <div class="tabs"><button class="tab-btn active">Scheda 1 · Verifica La derivata</button></div>
+    <section class="tab-panel">
+      <h2 class="section-title">Svolgimento completo</h2>
+
+      <article class="exercise">
+        <div class="exercise-head">
+          <div class="exercise-title"><span class="exercise-num">1</span>Vero o falso?</div>
+          <div class="statement">
+            <p>a. Se una funzione è derivabile in un punto $x_0$, allora è necessariamente continua in quel punto.</p>
+            <p>b. La derivata della funzione costante $f(x)=\pi$ è $f'(x)=1$. Motiva.</p>
+            <p>c. La derivata di una funzione in un punto è il coefficiente angolare della tangente al grafico in quel punto.</p>
+            <p>d. La derivata del prodotto di due funzioni è data dal prodotto delle loro derivate: $D[f(x)g(x)] = f'(x)g'(x)$. Motiva.</p>
+          </div>
+        </div>
+        <div class="controls"><button class="toggle" data-target="sol1">Mostra/Nascondi svolgimento</button></div>
+        <div id="sol1" class="solution">
+          <div class="step"><strong>a. Vero.</strong> Se una funzione è derivabile in $x_0$, allora è anche continua in $x_0$.</div>
+          <div class="step"><strong>b. Falso.</strong> Se $f(x)=\pi$ è costante, allora $$f'(x)=0$$ e non $1$.</div>
+          <div class="step"><strong>c. Vero.</strong> La derivata $f'(x_0)$ rappresenta il coefficiente angolare della retta tangente al grafico in $x_0$.</div>
+          <div class="step"><strong>d. Falso.</strong> La regola corretta è $$[f(x)g(x)]'=f'(x)g(x)+f(x)g'(x).$$</div>
+        </div>
+      </article>
+
+      <article class="exercise">
+        <div class="exercise-head">
+          <div class="exercise-title"><span class="exercise-num">2</span>Derivata con la definizione nel punto $x_0=-1$</div>
+          <div class="statement">Servendoti della definizione, calcola la derivata della funzione $f(x)=2x^2+3x-1$ nel punto $x_0=-1$.</div>
+        </div>
+        <div class="controls"><button class="toggle" data-target="sol2">Mostra/Nascondi svolgimento</button></div>
+        <div id="sol2" class="solution">
+          <h4>1. Definizione</h4>
+          <div class="step">$$f'(x_0)=\lim_{h\to0}\frac{f(x_0+h)-f(x_0)}{h}$$ quindi $$f'(-1)=\lim_{h\to0}\frac{f(-1+h)-f(-1)}{h}.$$</div>
+          <h4>2. Calcolo di $f(-1)$</h4>
+          <div class="step">$$f(-1)=2(-1)^2+3(-1)-1=2-3-1=-2.$$</div>
+          <h4>3. Calcolo di $f(-1+h)$</h4>
+          <div class="step">$$f(-1+h)=2(-1+h)^2+3(-1+h)-1$$ $$=2(1-2h+h^2)-3+3h-1=-2-h+2h^2.$$</div>
+          <h4>4. Rapporto incrementale</h4>
+          <div class="step">$$f'(-1)=\lim_{h\to0}\frac{(-2-h+2h^2)-(-2)}{h}=\lim_{h\to0}\frac{-h+2h^2}{h}$$ $$=\lim_{h\to0}(-1+2h)=-1.$$</div>
+          <h4>5. Verifica</h4>
+          <div class="step">$$f'(x)=4x+3 \qquad \Rightarrow \qquad f'(-1)=4(-1)+3=-1.$$</div>
+          <div class="note"><strong>Risultato finale:</strong> $$\boxed{f'(-1)=-1}$$</div>
+        </div>
+      </article>
+
+      <article class="exercise">
+        <div class="exercise-head">
+          <div class="exercise-title"><span class="exercise-num">3</span>Discontinuità e punti di non derivabilità dal grafico</div>
+          <div class="statement">Considera la funzione rappresentata in figura e individua gli eventuali punti di discontinuità e di non derivabilità, classificandoli.</div>
+		<img src="grafico_es3.png" alt="Grafico esercizio 3" class="graph">
+		</div>
+        <div class="controls"><button class="toggle" data-target="sol3">Mostra/Nascondi svolgimento</button></div>
+        <div id="sol3" class="solution">
+          <div class="grid">
+            <div>
+              <h4>Classificazione</h4>
+              <div class="step">
+                <p><strong>In $x=0$</strong> si osserva una <strong>discontinuità di salto</strong>: c'è un pallino pieno e un pallino vuoto alla stessa ascissa ma a quote diverse. Quindi la funzione non è derivabile in $x=0$.</p>
+                <p><strong>In $x=a$</strong> il grafico presenta un punto appuntito: si tratta di una <strong>cuspide / punto angoloso</strong>, quindi la funzione non è derivabile in $x=a$.</p>
+                <p><strong>In $x=b$</strong> si ha un massimo locale regolare: qui la derivata esiste e vale $0$.</p>
+                <p><strong>In $x=c$</strong> il grafico appare con <strong>tangente verticale</strong>, quindi il punto è non derivabile.</p>
+              </div>
+              <div class="note"><strong>Conclusione:</strong> discontinuità in $x=0$; non derivabilità in $x=0$, $x=a$ e, dal grafico, anche in $x=c$.</div>
+            </div>
+            
+          </div>
+        </div>
+      </article>
+
+      <article class="exercise"><div class="exercise-head"><div class="exercise-title"><span class="exercise-num">4</span>Calcola la derivata</div><div class="statement">$f(x)=-2x^5+4x^3-7x+2$</div></div><div class="controls"><button class="toggle" data-target="sol4">Mostra/Nascondi svolgimento</button></div><div id="sol4" class="solution"><div class="step">$$f'(x)=-10x^4+12x^2-7.$$</div></div></article>
+      <article class="exercise"><div class="exercise-head"><div class="exercise-title"><span class="exercise-num">5</span>Calcola la derivata</div><div class="statement">$f(x)=-3\cdot\dfrac{x^4}{4}-3\sqrt{x}+\dfrac{2}{x}$</div></div><div class="controls"><button class="toggle" data-target="sol5">Mostra/Nascondi svolgimento</button></div><div id="sol5" class="solution"><div class="step">$$f(x)=-\frac34x^4-3x^{1/2}+2x^{-1}$$ $$f'(x)=-3x^3-\frac{3}{2\sqrt{x}}-\frac{2}{x^2}.$$</div></div></article>
+      <article class="exercise"><div class="exercise-head"><div class="exercise-title"><span class="exercise-num">6</span>Calcola la derivata</div><div class="statement">$f(x)=\dfrac{2x-3}{x^2+1}$</div></div><div class="controls"><button class="toggle" data-target="sol6">Mostra/Nascondi svolgimento</button></div><div id="sol6" class="solution"><div class="step">$$f'(x)=\frac{2(x^2+1)-(2x-3)\cdot2x}{(x^2+1)^2}=\frac{-2x^2+6x+2}{(x^2+1)^2}.$$</div></div></article>
+      <article class="exercise"><div class="exercise-head"><div class="exercise-title"><span class="exercise-num">7</span>Calcola la derivata</div><div class="statement">$f(x)=e^{x+1}(x^2+2)$</div></div><div class="controls"><button class="toggle" data-target="sol7">Mostra/Nascondi svolgimento</button></div><div id="sol7" class="solution"><div class="step">$$f'(x)=e^{x+1}(x^2+2)+e^{x+1}\cdot2x=e^{x+1}(x^2+2x+2).$$</div></div></article>
+      <article class="exercise"><div class="exercise-head"><div class="exercise-title"><span class="exercise-num">8</span>Calcola la derivata</div><div class="statement">$f(x)=\ln(3x^2-5)$</div></div><div class="controls"><button class="toggle" data-target="sol8">Mostra/Nascondi svolgimento</button></div><div id="sol8" class="solution"><div class="step">$$f'(x)=\frac{6x}{3x^2-5}.$$</div></div></article>
+
+      <article class="exercise">
+        <div class="exercise-head"><div class="exercise-title"><span class="exercise-num">9</span>Retta tangente</div><div class="statement">Scrivi l'equazione della retta tangente al grafico della funzione $f(x)=\sqrt{2x+2}$ nel punto $P$ di ascissa $x_0=1$.</div></div>
+        <div class="controls"><button class="toggle" data-target="sol9">Mostra/Nascondi svolgimento</button></div>
+        <div id="sol9" class="solution">
+          <div class="step">$$P=(1,f(1))=(1,2).$$</div>
+          <div class="step">$$f'(x)=\frac{1}{\sqrt{2x+2}} \qquad \Rightarrow \qquad f'(1)=\frac12.$$</div>
+          <div class="step">La retta tangente è $$y-2=\frac12(x-1) \quad \Rightarrow \quad y=\frac12x+\frac32.$$</div>
+          <div class="note"><strong>Risultato finale:</strong> $$\boxed{y=\frac12x+\frac32}$$</div>
+        </div>
+      </article>
+
+      <section class="summary">
+        <h2 class="section-title" style="margin-top:0">Tabella riassuntiva finale</h2>
+        <table>
+          <thead><tr><th>Esercizio</th><th>Testo sintetico</th><th>Soluzione finale</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Vero/Falso sulle proprietà della derivata</td><td>a Vero; b Falso; c Vero; d Falso</td></tr>
+            <tr><td>2</td><td>Definizione di derivata in $x_0=-1$</td><td>$f'(-1)=-1$</td></tr>
+            <tr><td>3</td><td>Discontinuità e non derivabilità dal grafico</td><td>Discontinuità in $x=0$; non derivabilità in $x=0$, $x=a$ e, dal grafico, anche in $x=c$</td></tr>
+            <tr><td>4</td><td>$-2x^5+4x^3-7x+2$</td><td>$-10x^4+12x^2-7$</td></tr>
+            <tr><td>5</td><td>$-3\cdot \dfrac{x^4}{4}-3\sqrt{x}+\dfrac{2}{x}$</td><td>$-3x^3-\dfrac{3}{2\sqrt{x}}-\dfrac{2}{x^2}$</td></tr>
+            <tr><td>6</td><td>$\dfrac{2x-3}{x^2+1}$</td><td>$\dfrac{-2x^2+6x+2}{(x^2+1)^2}$</td></tr>
+            <tr><td>7</td><td>$e^{x+1}(x^2+2)$</td><td>$e^{x+1}(x^2+2x+2)$</td></tr>
+            <tr><td>8</td><td>$\ln(3x^2-5)$</td><td>$\dfrac{6x}{3x^2-5}$</td></tr>
+            <tr><td>9</td><td>Retta tangente in $x_0=1$</td><td>$y=\dfrac12x+\dfrac32$</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="footer">“L’istruzione è l’arma più potente che si possa usare per cambiare il mondo.”</div>
+    </section>
+  </div>
+
+  <script>
+    document.querySelectorAll('.toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const box = document.getElementById(btn.dataset.target);
+        box.classList.toggle('open');
+        if(window.MathJax){ MathJax.typesetPromise([box]).catch(() => {}); }
+      });
+    });
+    window.addEventListener('load', () => {
+      const traces = [
+        {x: [-2,-1,0], y: [-1.2,-0.2,0.8], mode:'lines', line:{width:4}, hoverinfo:'skip'},
+        {x: [0.02,0.15,0.35,0.55,0.75,1.0], y: [2.0,1.95,1.65,1.05,0.35,0], mode:'lines', line:{width:4}, hoverinfo:'skip'},
+        {x: [1.0,1.2,1.45,1.7,2.0], y: [0,1.05,1.95,1.45,0], mode:'lines', line:{width:4}, hoverinfo:'skip'},
+        {x: [2.0,2.08,2.2,2.5,2.9,3.3], y: [0,-0.6,-1.0,-1.35,-1.2,-0.75], mode:'lines', line:{width:4}, hoverinfo:'skip'},
+        {x:[0,0,1,1.45,2], y:[0.8,2.0,0,1.95,0], mode:'markers+text', text:['x=0','', 'a','b','c'], textposition:['bottom left','top left','bottom center','bottom center','bottom center'], marker:{size:[10,10,10,10,10], symbol:['circle','circle-open','circle','circle','circle']}, hoverinfo:'skip', showlegend:false}
+      ];
+      const layout = {margin:{l:36,r:16,t:16,b:34}, xaxis:{range:[-2.3,3.5], zeroline:true, showgrid:false, title:'x'}, yaxis:{range:[-1.8,2.5], zeroline:true, showgrid:false, title:'y'}, showlegend:false, paper_bgcolor:'#ffffff', plot_bgcolor:'#ffffff'};
+      Plotly.newPlot('plotQ3',traces,layout,{displayModeBar:false,responsive:true});
+    });
+  </script>
+</body>
+</html>
